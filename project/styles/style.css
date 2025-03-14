@@ -1,0 +1,21 @@
+/* Fonts */
+.big-shoulders {
+    font-family: "Big Shoulders", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+  }
+
+/* Intro */
+#startBody {
+    background-color: black;
+    font-family: "Big Shoulders";
+    color: white;
+}
+
+#introTextBox {
+    width: 80vw;
+    position: absolute;
+    top: 30vh;
+    text-align: center;
+}
