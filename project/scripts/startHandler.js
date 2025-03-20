@@ -12,6 +12,7 @@ function startSequence() {
     <h1>WARNING</h1>
     <h2>This game contains flashing lights, loud noises and jumpscares. Proceed with caution.</h2>
     <h2>It is recommended to use headphones and fullscreen (F11) for the best experience.</h2>
+    <div id="fullscreenButton" onclick="openFullscreen()">Click to enter Fullscreen mode</div>
     </div>
     `
     let introTextBox = document.getElementById('introTextBox');
@@ -24,7 +25,20 @@ function startSequence() {
         introTextBox.style.animation = 'none';
         introTextBox.style.animation = 'fadeOut 0.5s 0s ease-in-out';
         introTextBox.style.opacity = 0;
-    }, 4000)
+    }, 7000)
+    setTimeout(function() {
+        indexBody.innerHTML = 
+        `
+        <div id="skipBox">
+        <h2>Press <div id="skipIcon">E</div> to skip</h2>
+        </div>
+        `
+
+        let skipBox = document.getElementById('skipBox');
+        skipBox.style.animation = 'none';
+        skipBox.style.animation = 'fadeIn 0.5s 0s ease-in-out';
+        skipBox.style.opacity = 1;
+    }, 8000)
 }
 
 // ------------------------------------------------------------------------------------------------------

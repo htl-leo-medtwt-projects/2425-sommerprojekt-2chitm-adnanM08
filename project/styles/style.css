@@ -1,3 +1,12 @@
+/* Default variables */
+:root {
+    --color-transparent: rgba(0, 0, 0, 0);
+    --border-button: solid rgb(90, 63, 149) 0.1em;
+    --color-button: rgb(90, 63, 149);
+    --color-font: rgb(191, 59, 71);
+    --radius-button: 3px;
+}
+
 /* Fonts */
 .big-shoulders {
     font-family: "Big Shoulders", sans-serif;
@@ -19,6 +28,38 @@
     position: absolute;
     top: 30vh;
     text-align: center;
+}
+
+#skipBox {
+    display: flex;
+    flex-direction: row;
+    opacity: 0;
+    width: 99vw;
+    position: absolute;
+    bottom: 5vh;
+    text-align: center;
+}
+
+#fullscreenButton, #skipIcon {
+    background-color: var(--color-transparent);
+    color: white;
+    border: var(--border-button);
+
+    user-select: none;
+    cursor: pointer;
+    width: 10vw;
+    margin: 0 auto;
+    border-radius: var(--radius-button);
+    transition: all 0.5s 0s ease-in-out;
+}
+
+#skipIcon {
+    width: 5vw;
+}
+
+#fullscreenButton:hover {
+    color: white;
+    background-color: var(--color-button);
 }
 
 /* Animations */
