@@ -38,7 +38,18 @@ function startSequence() {
         skipBox.style.animation = 'none';
         skipBox.style.animation = 'fadeIn 0.5s 0s ease-in-out';
         skipBox.style.opacity = 1;
+        document.addEventListener('keyup', function(event) {
+          if (event.key == 'e') {
+            skipBox.style.opacity = 0;
+            introEnded();
+            return;
+          }
+        }, {once: true})
     }, 8000)
+}
+
+function introEnded() {
+  console.log("funktioniert")
 }
 
 // ------------------------------------------------------------------------------------------------------
