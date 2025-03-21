@@ -49,6 +49,13 @@ function startSequence() {
 }
 
 function introEnded() {
+  indexBody.style.backgroundImage = 'url("../ressources/images/startgif.gif")'
+  indexBody.style.backgroundRepeat = 'no-repeat'
+  indexBody.style.backgroundSize = '65%'
+  indexBody.innerHTML = 
+  `
+  
+  `
   console.log("funktioniert")
 }
 
