@@ -51,12 +51,11 @@ function startSequence() {
 function introEnded() {
   indexBody.style.backgroundImage = 'url("../ressources/images/startgif.gif")'
   indexBody.style.backgroundRepeat = 'no-repeat'
-  indexBody.style.backgroundSize = '65%'
+  indexBody.style.backgroundSize = '75%'
   indexBody.innerHTML = 
   `
-  
+  <img src="../ressources/images/distortion.gif" alt="distortion" id="distortionOverlay">
   `
-  console.log("funktioniert")
 }
 
 // ------------------------------------------------------------------------------------------------------
