@@ -1,5 +1,7 @@
 let indexBody = document.getElementById('startBody');
 
+let menuMusic = new Audio('../ressources/audios/menu_music.ogg')
+
 // on Page open
 startSequence();
 
@@ -49,6 +51,7 @@ function startSequence() {
 }
 
 function introEnded() {
+  menuMusic.play();
   indexBody.style.backgroundImage = 'url("../ressources/images/startgif.gif")'
   indexBody.style.backgroundRepeat = 'no-repeat'
   indexBody.style.backgroundSize = '75%'
