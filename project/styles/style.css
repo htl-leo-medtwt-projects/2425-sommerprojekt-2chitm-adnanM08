@@ -82,6 +82,16 @@ body {
     opacity: 0.4;
 }
 
+#title {
+    width: 30vw;
+    background-color: var(--color-transparent);
+    position: absolute;
+    right: 10em;
+    top: 10em;
+    color: var(--color-font);
+    z-index: -1;
+}
+
 /* Animations */
 @keyframes fadeOut {
     0% {opacity: 1;}

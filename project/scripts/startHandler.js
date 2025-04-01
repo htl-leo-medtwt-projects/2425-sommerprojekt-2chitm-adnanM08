@@ -58,6 +58,9 @@ function introEnded() {
   indexBody.innerHTML = 
   `
   <img src="../ressources/images/distortion.gif" alt="distortion" id="distortionOverlay">
+  <div id="title">
+  <img width="450px" src="../ressources/images/title.png" alt="underground">
+  </div>
   `
 }
 
