@@ -58,8 +58,15 @@ function introEnded() {
   indexBody.innerHTML = 
   `
   <img src="../ressources/images/distortion.gif" alt="distortion" id="distortionOverlay">
+  
   <div id="title">
   <img width="450px" src="../ressources/images/title.png" alt="underground">
+  <hr id="buttonHr">
+  <div id="buttonContainer">
+    <div id="newGameButton">New Game</div>
+    <div id="continueButton">Continue</div>
+    <div id="settingsButton">Settings</div>
+  </div>
   </div>
   `
 }

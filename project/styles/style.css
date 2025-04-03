@@ -57,7 +57,6 @@ body {
     background-color: var(--color-transparent);
     color: white;
     border: var(--border-button);
-
     user-select: none;
     cursor: pointer;
     width: 10vw;
@@ -87,9 +86,23 @@ body {
     background-color: var(--color-transparent);
     position: absolute;
     right: 10em;
-    top: 10em;
+    top: -2em;
     color: var(--color-font);
     z-index: -1;
+}
+
+#buttonContainer {
+    position: absolute;
+    top: 10.4em;
+    padding: 0 1em;
+    font-size: 40px;
+    width: 30vw;
+    background-color: black;
+}
+
+#buttonHr {
+    z-index: -1;
+    border: var(--color-font) solid 0.01em;
 }
 
 /* Animations */
