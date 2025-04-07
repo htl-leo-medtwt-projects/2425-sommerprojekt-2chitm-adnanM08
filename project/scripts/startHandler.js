@@ -67,8 +67,20 @@ function introEnded() {
     <div id="continueButton">Continue</div>
     <div id="settingsButton">Settings</div>
   </div>
+  <div id="settingsContainer"></div>
   </div>
   `
+}
+
+function toggleSettings() {
+  let settingsContainer = document.getElementById('settingsContainer')
+  if (settingsContainer.innerHTML == '') {
+    settingsContainer.innerHTML = 
+    `
+    <h1>SETTINGS</h1>
+    
+    `
+  }
 }
 
 // ------------------------------------------------------------------------------------------------------
