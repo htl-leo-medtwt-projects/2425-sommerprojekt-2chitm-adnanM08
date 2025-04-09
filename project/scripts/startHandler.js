@@ -50,8 +50,10 @@ function startSequence() {
     }, 8000)
 }
 
+// Brings user to main menu
 function introEnded() {
   menuMusic.play();
+  menuMusic.loop = true;
   indexBody.style.backgroundImage = 'url("../ressources/images/startgif.gif")'
   indexBody.style.backgroundRepeat = 'no-repeat'
   indexBody.style.backgroundSize = '75%'
@@ -72,6 +74,7 @@ function introEnded() {
   `
 }
 
+// open/close settings
 function toggleSettings() {
   let settingsContainer = document.getElementById('settingsContainer')
   if (settingsContainer.innerHTML == '') {
@@ -81,7 +84,7 @@ function toggleSettings() {
       <div id="settingsFlexContainer">
         <div class="settingsRows">
         <h2>Music</h2>
-        <input type="range" min="1" max="100" value="50" class="sliders" id="musicSlider">
+        <input type="range" min="0" max="100" value="50" class="sliders" id="musicSlider">
         </div>
         <div class="settingsRows">
         <h2>Sounds</h2>
@@ -89,18 +92,32 @@ function toggleSettings() {
         </div>
         <div class="settingsRows">
         <h2>Screen Size</h2>
-        <h2 id="screenSizeSelect"></h2>
+        <h2 id="screenSizeSelect" onclick="toggleFullscreen()"></h2>
         </div>
       </div>
     `
-
+    document.getElementById('musicSlider').addEventListener('input', onMusicSliderInput)
+    function onMusicSliderInput() {
+      menuMusic.volume = document.getElementById('musicSlider').value / 100;
+    }
     if (document.fullscreenElement != null) {
-      document.getElementById('screenSizeSelect').innerHTML = 'Fullscreen'
+      document.getElementById('screenSizeSelect').innerHTML = '<span class="arrowStyle">〈</span> Fullscreen <span class="arrowStyle">〉</span>'
     } else {
-      document.getElementById('screenSizeSelect').innerHTML = 'Window'
+      document.getElementById('screenSizeSelect').innerHTML = '<span class="arrowStyle">〈</span> Window <span class="arrowStyle">〉</span>'
     }
   } else {settingsContainer.innerHTML == ''}
 }
+
+function toggleFullscreen() {
+  if (document.fullscreenElement == null) {
+    openFullscreen();
+    document.getElementById('screenSizeSelect').innerHTML = '<span class="arrowStyle">〈</span> Fullscreen <span class="arrowStyle">〉</span>';
+  } else {
+    closeFullscreen();
+    document.getElementById('screenSizeSelect').innerHTML = '<span class="arrowStyle">〈</span> Window <span class="arrowStyle">〉</span>';
+  }
+}
+// toggle music volume on slider input
 
 
 

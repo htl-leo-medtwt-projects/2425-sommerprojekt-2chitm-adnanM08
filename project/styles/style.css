@@ -127,6 +127,14 @@ body {
     background-color: var(--color-button);
 }
 
+.arrowStyle {
+    color: var(--color-font);
+}
+
+#screenSizeSelect {
+    cursor: pointer;
+}
+
 /* Animations */
 @keyframes fadeOut {
     0% {opacity: 1;}
