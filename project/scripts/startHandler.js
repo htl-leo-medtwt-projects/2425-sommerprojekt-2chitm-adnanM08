@@ -63,9 +63,9 @@ function introEnded() {
   <img width="450px" src="../ressources/images/title.png" alt="underground">
   <hr id="buttonHr">
   <div id="buttonContainer">
-    <div id="newGameButton">New Game</div>
-    <div id="continueButton">Continue</div>
-    <div id="settingsButton">Settings</div>
+    <div class="homeButtons" id="newGameButton">New Game</div>
+    <div class="homeButtons" id="continueButton">Continue</div>
+    <div onclick="toggleSettings()" class="homeButtons" id="settingsButton">Settings</div>
   </div>
   <div id="settingsContainer"></div>
   </div>
@@ -78,10 +78,31 @@ function toggleSettings() {
     settingsContainer.innerHTML = 
     `
     <h1>SETTINGS</h1>
-    
+      <div id="settingsFlexContainer">
+        <div class="settingsRows">
+        <h2>Music</h2>
+        <input type="range" min="1" max="100" value="50" class="sliders" id="musicSlider">
+        </div>
+        <div class="settingsRows">
+        <h2>Sounds</h2>
+        <input type="range" min="1" max="100" value="50" class="sliders" id="soundsSlider">
+        </div>
+        <div class="settingsRows">
+        <h2>Screen Size</h2>
+        <h2 id="screenSizeSelect"></h2>
+        </div>
+      </div>
     `
-  }
+
+    if (document.fullscreenElement != null) {
+      document.getElementById('screenSizeSelect').innerHTML = 'Fullscreen'
+    } else {
+      document.getElementById('screenSizeSelect').innerHTML = 'Window'
+    }
+  } else {settingsContainer.innerHTML == ''}
 }
+
+
 
 // ------------------------------------------------------------------------------------------------------
 // FULLSCREEN CODE SNIPPET FROM W2SCHOOLS | Link: https://www.w3schools.com/howto/howto_js_fullscreen.asp

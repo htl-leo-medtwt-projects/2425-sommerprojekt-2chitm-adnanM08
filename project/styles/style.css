@@ -77,8 +77,10 @@ body {
 
 /* Startpage */
 #distortionOverlay {
+    position: absolute;
     width: 110%;
     opacity: 0.4;
+    z-index: -1;
 }
 
 #title {
@@ -96,9 +98,33 @@ body {
     top: 10.4em;
     padding: 0 1em;
     font-size: 40px;
-    width: 30vw;
-    background-color: black;
     z-index: 5;
+}
+
+.homeButtons {
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+#settingsContainer {
+    text-align: center;
+    width: 30vw;
+    position: absolute;
+    top: 30vh;
+    left: -40vw;
+    background-color: rgba(191, 59, 71, 0.5);
+    color: white;
+    border: 0.2em solid var(--color-font);
+}
+
+.settingsRows {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.sliders {
+    background-color: var(--color-button);
 }
 
 /* Animations */
