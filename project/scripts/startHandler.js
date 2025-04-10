@@ -31,11 +31,25 @@ function startSequence() {
     setTimeout(function() {
         indexBody.innerHTML = 
         `
+        <img id="openingCsBanner" src="../ressources/images/openingCutscene.jpg" alt="opening">
         <div id="skipBox">
         <h2>Press <div id="skipIcon">E</div> to skip</h2>
         </div>
         `
+        let openingCsBanner = document.getElementById('openingCsBanner')
+        openingCsBanner.style.animation = 'fadeIn 3s 1s ease-in-out,moveDown 30s 4s ease-in-out '
+        setTimeout(function() {
+          openingCsBanner.style.opacity = 1
+        }, 2999);
 
+        setTimeout(function() {
+          indexBody.innerHTML = ''
+        }, 33000)
+
+        setTimeout(function() {
+          introEnded();
+        }, 34000)
+        
         let skipBox = document.getElementById('skipBox');
         skipBox.style.animation = 'none';
         skipBox.style.animation = 'fadeIn 0.5s 0s ease-in-out';
@@ -63,7 +77,6 @@ function introEnded() {
   
   <div id="title">
   <img width="450px" src="../ressources/images/title.png" alt="underground">
-  <hr id="buttonHr">
   <div id="buttonContainer">
     <div class="homeButtons" id="newGameButton">New Game</div>
     <div class="homeButtons" id="continueButton">Continue</div>
@@ -78,6 +91,7 @@ function introEnded() {
 function toggleSettings() {
   let settingsContainer = document.getElementById('settingsContainer')
   if (settingsContainer.innerHTML == '') {
+    settingsContainer.style.display = 'block'
     settingsContainer.innerHTML = 
     `
     <h1>SETTINGS</h1>
@@ -105,7 +119,10 @@ function toggleSettings() {
     } else {
       document.getElementById('screenSizeSelect').innerHTML = '<span class="arrowStyle">〈</span> Window <span class="arrowStyle">〉</span>'
     }
-  } else {settingsContainer.innerHTML == ''}
+  } else {
+    settingsContainer.innerHTML = '';
+    settingsContainer.style.display = 'none'
+  }
 }
 
 function toggleFullscreen() {
