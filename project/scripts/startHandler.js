@@ -85,6 +85,9 @@ function introEnded() {
   <div id="settingsContainer"></div>
   </div>
   `
+  if (PLAYER.level == 1) {
+    document.getElementById('continueButton').style.opacity = 0.5;
+  }
 }
 
 // open/close settings
