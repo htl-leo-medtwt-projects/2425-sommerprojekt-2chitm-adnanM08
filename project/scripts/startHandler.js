@@ -3,6 +3,11 @@ let indexBody = document.getElementById('startBody');
 let menuMusic = new Audio('../ressources/audios/menu_music.ogg')
 
 // on Page open
+console.log(`GAME | Welcome to the console! You can use "commands" (functions) to modify your gameplay. Here is a list of usable functions:
+  - toggleLifeStatus() -- Changes player status to alive or dead
+  - changeLevel(LEVEL) -- Changes level to given number between 1 and 5
+  - changeStars(STARS) -- Changes amount of stars to given number starting from 1
+  - clearPlayerData() -- Resets all data including levels (WARNING: This action is irreversible)`)
 startSequence();
 
 // Intro

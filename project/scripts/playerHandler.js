@@ -38,9 +38,13 @@ function changeStars(num) {
 
 function clearPlayerData() {
     // prompt() feature from stackOverflow. Link: https://stackoverflow.com/questions/75180343/how-to-get-a-users-input-from-console-and-put-it-into-a-variable-in-js
-    let res = prompt('WARNING | This resets all of your player data and sets you back to level 1.\nType "yes" if you want to proceed, otherwise type "no" (not case sensitive).');
+    let res = prompt('WARNING | This resets all of your player data, sets you back to level 1 and reloads the game.\nType "yes" if you want to proceed, otherwise type "no" (not case sensitive).');
     if (res.toLowerCase() == 'yes' || res.toLowerCase() == 'y') {
         localStorage.clear();
+        console.log('GAME | Data cleared successfully! Reloading game in 3 seconds.')
+        setTimeout(function() {
+            location.reload();
+        })
     } else {
         console.log('GAME | Prompt cancelled. No data has been cleared.')
     }
