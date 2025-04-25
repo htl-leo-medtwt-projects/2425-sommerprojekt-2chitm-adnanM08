@@ -118,6 +118,7 @@ function toggleSettings() {
         </div>
       </div>
     `
+    // toggle music volume on slider input
     document.getElementById('musicSlider').addEventListener('input', onMusicSliderInput)
     function onMusicSliderInput() {
       menuMusic.volume = document.getElementById('musicSlider').value / 100;
@@ -142,7 +143,6 @@ function toggleFullscreen() {
     document.getElementById('screenSizeSelect').innerHTML = '<span class="arrowStyle">〈</span> Window <span class="arrowStyle">〉</span>';
   }
 }
-// toggle music volume on slider input
 
 
 
