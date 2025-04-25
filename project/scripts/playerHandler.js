@@ -8,8 +8,6 @@ let PLAYER = {
     'stars': 0, // How many stars the player has. Stars can be obtained by winning all Levels (nights)
 }
 
-// mechanics
-
 
 // player functions (made console/user friendly with logs)
 function toggleLifeStatus() {

@@ -83,7 +83,7 @@ function introEnded() {
   <div id="title">
   <img width="450px" src="../ressources/images/title.png" alt="underground">
   <div id="buttonContainer">
-    <div class="homeButtons" id="newGameButton">New Game</div>
+    <div class="homeButtons" id="newGameButton" onclick="introduction()">New Game</div>
     <div class="homeButtons" id="continueButton">Continue</div>
     <div onclick="toggleSettings()" class="homeButtons" id="settingsButton">Settings</div>
   </div>
