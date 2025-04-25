@@ -1,4 +1,4 @@
-import Reveal from 'reveal.js';
+import Reveal from '..\node_modules\reveal.js';
 import Markdown from '..\node_modules\reveal.js/plugin/markdown/markdown.esm.js';
 
 let deck = new Reveal({
@@ -6,6 +6,9 @@ let deck = new Reveal({
 });
 deck.initialize();
 
+let GAME = {
+    'running': false
+}
 function introduction() {
     indexBody.innerHTML = `
     <div id="fullpage">

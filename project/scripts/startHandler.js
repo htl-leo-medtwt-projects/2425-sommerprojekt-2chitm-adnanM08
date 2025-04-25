@@ -52,7 +52,7 @@ function startSequence() {
         }, 33000)
 
         setTimeout(function() {
-          introEnded();
+         loadHomePage();
         }, 34000)
         
         let skipBox = document.getElementById('skipBox');
@@ -62,7 +62,7 @@ function startSequence() {
         document.addEventListener('keyup', function(event) {
           if (event.key == 'e') {
             skipBox.style.opacity = 0;
-            introEnded();
+           loadHomePage();
             return;
           }
         }, {once: true})
@@ -70,7 +70,7 @@ function startSequence() {
 }
 
 // Brings user to main menu
-function introEnded() {
+function loadHomePage() {
   menuMusic.play();
   menuMusic.loop = true;
   indexBody.style.backgroundImage = 'url("../ressources/images/startgif.gif")'
