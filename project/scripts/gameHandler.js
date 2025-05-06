@@ -42,3 +42,15 @@ function introduction() {
     </script>
     `;
 }
+
+function loadLevel() {
+    indexBody.style.backgroundImage = 'none'
+    indexBody.innerHTML = 
+    `
+    <div id="mapContainer">
+    <img src="../ressources/levelRessources/elevator.gif" id="elevator">
+    <div class="mouseTrigger" id="leftTrigger">.</div>
+    <div class="mouseTrigger" id="rightTrigger">.</div>
+    <div>
+    `
+}

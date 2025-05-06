@@ -23,6 +23,16 @@ body {
 }
 
 /* Intro */
+#clickBox {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 20em;
+}
+
+#clickText {
+    font-weight: lighter;
+}
 #startBody {
     background-color: black;
     font-family: "Big Shoulders";
@@ -142,6 +152,32 @@ body {
 
 #screenSizeSelect {
     cursor: pointer;
+}
+
+/*Levels*/
+#mapContainer {
+    width: 100%;
+    height: 100vh;
+}
+
+.mouseTrigger {
+    opacity: 0;
+    position: absolute;
+    width: 15vw;
+    height: 100vh;
+}
+
+#leftTrigger {
+    left: 0;
+}
+
+#rightTrigger {
+    right: 0;
+}
+
+#elevator {
+    height: 100%;
+    transform: scale(1.3);
 }
 
 /* Animations */

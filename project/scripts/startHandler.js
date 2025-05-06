@@ -2,13 +2,27 @@ let indexBody = document.getElementById('startBody');
 
 let menuMusic = new Audio('../ressources/audios/menu_music.ogg')
 
+
+
 // on Page open
 console.log(`GAME | Welcome to the console! You can use "commands" (functions) to modify your gameplay. Here is a list of usable functions:
   - toggleLifeStatus() -- Changes player status to alive or dead
   - changeLevel(LEVEL) -- Changes level to given number between 1 and 5
   - changeStars(STARS) -- Changes amount of stars to given number starting from 1
   - clearPlayerData() -- Resets all data including levels (WARNING: This action is irreversible)`)
-startSequence();
+getUserInput();
+
+
+// user input for audio
+function getUserInput() {
+  indexBody.innerHTML = 
+  `
+  
+  <div id="clickBox" onclick="startSequence()">
+    <h1>UNDERGROUND - THE AWAKENING<br><span id="clickText">Click anywhere to proceed<span></h1>
+  </div>
+  `
+}
 
 // Intro
 
@@ -83,7 +97,7 @@ function loadHomePage() {
   <div id="title">
   <img width="450px" src="../ressources/images/title.png" alt="underground">
   <div id="buttonContainer">
-    <div class="homeButtons" id="newGameButton" onclick="introduction()">New Game</div>
+    <div class="homeButtons" id="newGameButton" onclick="loadLevel()">New Game</div>
     <div class="homeButtons" id="continueButton">Continue</div>
     <div onclick="toggleSettings()" class="homeButtons" id="settingsButton">Settings</div>
   </div>
