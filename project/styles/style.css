@@ -163,12 +163,22 @@ body {
 .mouseTrigger {
     opacity: 0;
     position: absolute;
-    width: 15vw;
+    top: 0;
+    width: 35vw;
     height: 100vh;
+    z-index: 5;
+}
+
+.mapBg {
+    z-index: 4;
 }
 
 #leftTrigger {
     left: 0;
+}
+
+#leftTrigger:hover + #elevator {
+    animation: 'slideLeft 0.5s 0s linear';
 }
 
 #rightTrigger {
@@ -178,6 +188,9 @@ body {
 #elevator {
     height: 100%;
     transform: scale(1.3);
+    position: absolute;
+    left: 0;
+    right: 0;
 }
 
 /* Animations */
@@ -194,4 +207,24 @@ body {
 @keyframes moveDown {
     0% {top: -60em;}
     100% {top: 0em;}
+}
+
+@keyframes slideLeft {
+    0%{left: 0;}
+    100% {left: 10vw;}
+}
+
+@keyframes slideFromLeftToCenter {
+    0%{left: 10vw;}
+    100% {left: 0;}
+}
+
+@keyframes slideFromRightToCenter {
+    0%{right: 10vw;}
+    100% {right: 0;}
+}
+
+@keyframes slideRight {
+    0%{right: 0;}
+    100% {right: 10vw;}
 }

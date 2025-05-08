@@ -48,9 +48,36 @@ function loadLevel() {
     indexBody.innerHTML = 
     `
     <div id="mapContainer">
-    <img src="../ressources/levelRessources/elevator.gif" id="elevator">
-    <div class="mouseTrigger" id="leftTrigger">.</div>
-    <div class="mouseTrigger" id="rightTrigger">.</div>
+    <div class="mouseTrigger" id="leftTrigger" onmouseover="moveLeft()">.</div>
+    <div class="mouseTrigger" id="rightTrigger" onmouseover="moveRight()">.</div>
+    <img src="../ressources/levelRessources/elevator.gif" id="elevator" class="mapBg">
     <div>
     `
+}
+
+//mechanics
+function moveLeft() {
+    let elevator = document.getElementById('elevator')
+    elevator.style.animation = 'none'
+    if (elevator.style.right == '10vw') {
+        elevator.style.animation = 'slideFromRightToCenter 0.5s 0s linear'
+        elevator.style.animation = 'slideLeft 0.5s 0s linear'
+    } else {
+        elevator.style.animation = 'slideLeft 0.5s 0s linear'
+    }
+    elevator.style.right = '0'
+    elevator.style.left = '10em'
+}
+
+function moveRight() {
+    let elevator = document.getElementById('elevator')
+    elevator.style.animation = 'none'
+    if (elevator.style.left == '10vw') {
+        elevator.style.animation = 'slideFromLeftToCenter 0.5s 0s linear'
+        elevator.style.animation = 'slideRight 0.5s 0s linear'
+    } else {
+        elevator.style.animation = 'slideRight 0.5s 0s linear'
+    }
+    elevator.style.left = '0'
+    elevator.style.right = '10em'
 }
