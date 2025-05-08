@@ -47,12 +47,22 @@ function loadLevel() {
     indexBody.style.backgroundImage = 'none'
     indexBody.innerHTML = 
     `
+    <div id="clickBox">
+        <h1>Night ${PLAYER.level}</h1>
+    </div>
+    
+    `
+    setTimeout(function() {
+    indexBody.innerHTML = 
+    `
     <div id="mapContainer">
     <div class="mouseTrigger" id="leftTrigger" onmouseover="moveLeft()">.</div>
     <div class="mouseTrigger" id="rightTrigger" onmouseover="moveRight()">.</div>
     <img src="../ressources/levelRessources/elevator.gif" id="elevator" class="mapBg">
     <div>
     `
+    }, 3000)
+    
 }
 
 //mechanics
