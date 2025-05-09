@@ -10,6 +10,12 @@ deck.initialize(); */
 // configuration
 let alarmSound = new Audio('../ressources/audios/alarm.wav');
 
+let jumpscares = [
+    '../ressources/characters/balloraJumpscare.gif',
+    '../ressources/characters/funtimeFreddyJumpscare.gif',
+    '../ressources/characters/funtimeFoxyJumpscare.gif'
+]
+
 // main
 let GAME = {
     'running': false,
@@ -68,6 +74,7 @@ function loadLevel() {
     <img src="../ressources/images/mousecontrol.png" class="controlIcon">
     <div>
     <div id="redAlarm"></div>
+    <div id="jumpscareBox"></div>
     `
     }, 3000)
     
@@ -94,6 +101,17 @@ function moveRight() {
         elevator.style.animation = 'slideRight 0.5s 0s linear'
     }
     elevator.style.right = '10em'
+}
+
+function jumpscare(anim) {
+    let jumpscareBox = document.getElementById('jumpscareBox');
+    jumpscareBox.innerHTML = `<img id="jsImg" src="${jumpscares[anim]}" alt="jumpscare">`;
+    jumpscareBox.style.zIndex = 9;
+    setTimeout(function() {
+        jumpscareBox.innerHTML = ``;
+        jumpscareBox.style.zIndex = -1;
+        indexBody.innerHTML = '<div id="gameOverScreen"><img src="" alt="Game Over"></div>'
+    }, 1000)
 }
 
 async function toggleAlarm() {
