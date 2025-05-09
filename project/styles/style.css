@@ -166,7 +166,7 @@ body {
     top: 0;
     width: 35vw;
     height: 100vh;
-    z-index: 5;
+    z-index: 8;
 }
 
 .mapBg {
@@ -177,10 +177,6 @@ body {
     left: 0;
 }
 
-#leftTrigger:hover + #elevator {
-    animation: 'slideLeft 0.5s 0s linear';
-}
-
 #rightTrigger {
     right: 0;
 }
@@ -189,8 +185,26 @@ body {
     height: 100%;
     transform: scale(1.3);
     position: absolute;
-    left: 0;
     right: 0;
+}
+
+.controlIcon {
+    width: 10em;
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    z-index: 8;
+}
+
+#redAlarm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    z-index: -1;
+    opacity: 0;
 }
 
 /* Animations */
@@ -210,21 +224,21 @@ body {
 }
 
 @keyframes slideLeft {
-    0%{left: 0;}
-    100% {left: 10vw;}
+    0%{right: 0;}
+    100% {right: -5vw;}
 }
 
 @keyframes slideFromLeftToCenter {
-    0%{left: 10vw;}
-    100% {left: 0;}
+    0%{right: -5vw;}
+    100% {right: 0;}
 }
 
 @keyframes slideFromRightToCenter {
-    0%{right: 10vw;}
+    0%{right: 10em;}
     100% {right: 0;}
 }
 
 @keyframes slideRight {
     0%{right: 0;}
-    100% {right: 10vw;}
+    100% {right: 10em;}
 }

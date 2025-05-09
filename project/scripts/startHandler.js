@@ -61,13 +61,13 @@ function startSequence() {
           openingCsBanner.style.opacity = 1
         }, 2999);
 
-        setTimeout(function() {
-          indexBody.innerHTML = ''
-        }, 33000)
+        var emptyPageTO = setTimeout(function() {
+                            indexBody.innerHTML = ''
+                          }, 33000)
 
-        setTimeout(function() {
-         loadHomePage();
-        }, 34000)
+        var loadHomePageTO = setTimeout(function() {
+                              loadHomePage();
+                            }, 34000)
         
         let skipBox = document.getElementById('skipBox');
         skipBox.style.animation = 'none';
@@ -77,6 +77,8 @@ function startSequence() {
           if (event.key == 'e') {
             skipBox.style.opacity = 0;
            loadHomePage();
+           clearTimeout(emptyPageTO);
+           clearTimeout(loadHomePageTO);
             return;
           }
         }, {once: true})

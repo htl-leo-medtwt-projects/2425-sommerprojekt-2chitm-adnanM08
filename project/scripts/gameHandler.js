@@ -7,8 +7,13 @@ let deck = new Reveal({
 });
 deck.initialize(); */
 
+// configuration
+let alarmSound = new Audio('../ressources/audios/alarm.wav');
+
+// main
 let GAME = {
-    'running': false
+    'running': false,
+    'alarmActive': false
 }
 function introduction() {
     indexBody.innerHTML = `
@@ -44,6 +49,7 @@ function introduction() {
 }
 
 function loadLevel() {
+    menuMusic.pause();
     indexBody.style.backgroundImage = 'none'
     indexBody.innerHTML = 
     `
@@ -59,7 +65,9 @@ function loadLevel() {
     <div class="mouseTrigger" id="leftTrigger" onmouseover="moveLeft()">.</div>
     <div class="mouseTrigger" id="rightTrigger" onmouseover="moveRight()">.</div>
     <img src="../ressources/levelRessources/elevator.gif" id="elevator" class="mapBg">
+    <img src="../ressources/images/mousecontrol.png" class="controlIcon">
     <div>
+    <div id="redAlarm"></div>
     `
     }, 3000)
     
@@ -69,25 +77,45 @@ function loadLevel() {
 function moveLeft() {
     let elevator = document.getElementById('elevator')
     elevator.style.animation = 'none'
-    if (elevator.style.right == '10vw') {
-        elevator.style.animation = 'slideFromRightToCenter 0.5s 0s linear'
-        elevator.style.animation = 'slideLeft 0.5s 0s linear'
+    if (elevator.style.right == '10em') {
+        elevator.style.animation = 'slideFromRightToCenter 0.5s 0s linear, slideLeft 0.6s 0.51s linear'
     } else {
         elevator.style.animation = 'slideLeft 0.5s 0s linear'
     }
-    elevator.style.right = '0'
-    elevator.style.left = '10em'
+    elevator.style.right = '-5vw'
 }
 
 function moveRight() {
     let elevator = document.getElementById('elevator')
     elevator.style.animation = 'none'
-    if (elevator.style.left == '10vw') {
-        elevator.style.animation = 'slideFromLeftToCenter 0.5s 0s linear'
-        elevator.style.animation = 'slideRight 0.5s 0s linear'
+    if (elevator.style.right == '-5vw') {
+        elevator.style.animation = 'slideFromLeftToCenter 0.5s 0s linear, slideRight 0.6s 0.51s linear'
     } else {
         elevator.style.animation = 'slideRight 0.5s 0s linear'
     }
-    elevator.style.left = '0'
     elevator.style.right = '10em'
 }
+
+async function toggleAlarm() {
+    // Activates/Deactivates the alarm in the room. Used for specific attacks.
+    let redAlarmBox = document.getElementById('redAlarm')
+    if (GAME.alarmActive) {
+        alarmSound.loop = true;
+        alarmSound.play()
+        while (GAME.alarmActive) {
+        redAlarmBox.style.opacity = 0.5;
+        redAlarmBox.style.zIndex = 7;
+        await timer(1000);
+        redAlarmBox.style.opacity = 0;
+        redAlarmBox.style.zIndex = -1;
+        await timer(1000);
+        }
+    } else {
+        alarmSound.pause()
+        GAME.alarmActive = false;
+    }
+    
+}
+
+// timer code snippet from StackOverflow. Link: https://stackoverflow.com/questions/3583724/how-do-i-add-a-delay-in-a-javascript-loop
+function timer(ms) { return new Promise(res => setTimeout(res, ms)); }
