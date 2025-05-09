@@ -220,6 +220,30 @@ body {
     width: 100%;
 }
 
+#gameOverScreen {
+    width: 100%;
+    height: 100%;
+}
+
+#gameOverScreen img {
+    width: 100%;
+}
+
+#gameOverText {
+    color: var(--color-font);
+    text-align: center;
+    position: absolute;
+    top: 30vh;
+    width: 100%;
+    font-size: 100px;
+}
+
+#subText {
+    color: white;
+    font-size: 50px;
+    font-weight: lighter;
+}
+
 /* Animations */
 @keyframes fadeOut {
     0% {opacity: 1;}

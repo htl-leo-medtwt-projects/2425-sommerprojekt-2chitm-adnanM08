@@ -110,7 +110,7 @@ function jumpscare(anim) {
     setTimeout(function() {
         jumpscareBox.innerHTML = ``;
         jumpscareBox.style.zIndex = -1;
-        indexBody.innerHTML = '<div id="gameOverScreen"><img src="" alt="Game Over"></div>'
+        indexBody.innerHTML = '<div onclick="loadHomePage()" id="gameOverScreen"><img src="../ressources/levelRessources/distortion.gif" alt="Game Over"><h1 id="gameOverText">GAME OVER<br><span id="subText">Click anywhere to continue</span></h1></div>'
     }, 1000)
 }
 
