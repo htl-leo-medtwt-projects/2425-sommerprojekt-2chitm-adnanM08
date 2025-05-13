@@ -57,16 +57,16 @@ function introduction() {
 function loadLevel() {
     menuMusic.pause();
     indexBody.style.backgroundImage = 'none'
-    indexBody.innerHTML = 
-    `
+    indexBody.innerHTML =
+        `
     <div id="clickBox">
         <h1>Night ${PLAYER.level}</h1>
     </div>
     
     `
-    setTimeout(function() {
-    indexBody.innerHTML = 
-    `
+    setTimeout(function () {
+        indexBody.innerHTML =
+            `
     <div id="mapContainer">
     <div class="mouseTrigger" id="leftTrigger" onmouseover="moveLeft()">.</div>
     <div class="mouseTrigger" id="rightTrigger" onmouseover="moveRight()">.</div>
@@ -77,7 +77,7 @@ function loadLevel() {
     <div id="jumpscareBox"></div>
     `
     }, 3000)
-    
+
 }
 
 //mechanics
@@ -103,11 +103,36 @@ function moveRight() {
     elevator.style.right = '10em'
 }
 
+function win() {
+    indexBody.innerHTML = ''
+    setTimeout(function () {
+        indexBody.innerHTML =
+            `
+            <img id="winScreen" src="../ressources/images/winScreen.gif" alt="You won!">
+            `
+            document.getElementById('winScreen').style.animation = 'fadeOut 1s 8s ease-in-out'
+    }, 1000)
+    if (PLAYER.level < 5) {
+        PLAYER.level++;
+        setTimeout(function() {
+            loadLevel();
+        }, 10000)
+        
+    } else {
+        PLAYER.level = 1
+        PLAYER.stars++;
+        setTimeout(function() {
+            loadHomePage();
+        }, 10000)
+    }
+    
+}
+
 function jumpscare(anim) {
     let jumpscareBox = document.getElementById('jumpscareBox');
     jumpscareBox.innerHTML = `<img id="jsImg" src="${jumpscares[anim]}" alt="jumpscare">`;
     jumpscareBox.style.zIndex = 9;
-    setTimeout(function() {
+    setTimeout(function () {
         jumpscareBox.innerHTML = ``;
         jumpscareBox.style.zIndex = -1;
         indexBody.innerHTML = '<div onclick="loadHomePage()" id="gameOverScreen"><img src="../ressources/levelRessources/distortion.gif" alt="Game Over"><h1 id="gameOverText">GAME OVER<br><span id="subText">Click anywhere to continue</span></h1></div>'
@@ -121,18 +146,18 @@ async function toggleAlarm() {
         alarmSound.loop = true;
         alarmSound.play()
         while (GAME.alarmActive) {
-        redAlarmBox.style.opacity = 0.5;
-        redAlarmBox.style.zIndex = 7;
-        await timer(1000);
-        redAlarmBox.style.opacity = 0;
-        redAlarmBox.style.zIndex = -1;
-        await timer(1000);
+            redAlarmBox.style.opacity = 0.5;
+            redAlarmBox.style.zIndex = 7;
+            await timer(1000);
+            redAlarmBox.style.opacity = 0;
+            redAlarmBox.style.zIndex = -1;
+            await timer(1000);
         }
     } else {
         alarmSound.pause()
         GAME.alarmActive = false;
     }
-    
+
 }
 
 // timer code snippet from StackOverflow. Link: https://stackoverflow.com/questions/3583724/how-do-i-add-a-delay-in-a-javascript-loop
