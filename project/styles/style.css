@@ -153,6 +153,10 @@ body {
     cursor: pointer;
 }
 
+#discl {
+    font-size: 10px;
+}
+
 /*Levels*/
 #mapContainer {
     width: 100%;

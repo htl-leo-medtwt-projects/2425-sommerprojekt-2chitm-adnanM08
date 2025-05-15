@@ -23,35 +23,48 @@ let GAME = {
     'alarmActive': false
 }
 function introduction() {
-    indexBody.innerHTML = `
-    <div class="reveal">
+    indexBody.innerHTML = ``
+    setTimeout(function () {
+        indexBody.style.backgroundImage = 'url("../ressources/images/slidesBg.png")'
+        indexBody.style.backgroundSize = 'cover'
+        indexBody.innerHTML = `
+        <div class="reveal">
             <div class="slides">
  
                 <section>
-                    <h2>Barebones Presentation</h2>
-                    <p>This example contains the bare minimum includes and markup required to run a reveal.js presentation.</p>
+                    <h2>Welcome to your new job!</h2>
+                    <p>We will now lead you through the basics to give you a great start to your awesome career.</p>
                 </section>
  
                 <section>
-                    <h2>No Theme</h2>
-                    <p>There's no theme included, so it will fall back on browser defaults.</p>
+                    <h2>Your job at Kidz Entertainment!</h2>
+                    <p>Kidz Entertainment is opening it's brand new location and your job is to recover old systems left in the underground facility by the former owner.</p>
+                    <p>Use your portable computer to turn on and repair old systems (hover with your mouse over the button at the bottom)</p>
                 </section>
- 
+
+                <section>
+                    <h2>Safety First</h2>
+                    <p>Due to financial issues and saving plans you are only equipped with the available systems in the facility including cameras and a sound system, but what could you possibly need that for?</p>
+                    <p id="discl">Kidz Entertainment is not responsible for any damage and issues including, but not limited to, injury or death.</p>
+                    <p>Have a great shift!</p>
+                </section>
             </div>
         </div>
     `;
- 
-    if (!window.revealInitialized) {
-        Reveal.initialize();
-        window.revealInitialized = true;
-    } else {
-        Reveal.sync(); // Falls du Slides später hinzufügst
-    }
+
+        if (!window.revealInitialized) {
+            Reveal.initialize();
+            window.revealInitialized = true;
+        } else {
+            Reveal.sync(); // Falls du Slides später hinzufügst
+        }
+        document.getElementsByClassName('reveal')[0].style.animation = 'fadeIn 0.5s 0s ease-in-out'
+    }, 1000)
+
 }
 
 function loadLevel() {
     menuMusic.pause();
-    indexBody.style.backgroundImage = 'none'
     indexBody.innerHTML =
         `
     <div id="clickBox">
@@ -105,22 +118,22 @@ function win() {
             `
             <img id="winScreen" src="../ressources/images/winScreen.gif" alt="You won!">
             `
-            document.getElementById('winScreen').style.animation = 'fadeOut 1s 8s ease-in-out'
+        document.getElementById('winScreen').style.animation = 'fadeOut 1s 8s ease-in-out'
     }, 1000)
     if (PLAYER.level < 5) {
         PLAYER.level++;
-        setTimeout(function() {
+        setTimeout(function () {
             loadLevel();
         }, 10000)
-        
+
     } else {
         PLAYER.level = 1
         PLAYER.stars++;
-        setTimeout(function() {
+        setTimeout(function () {
             loadHomePage();
         }, 10000)
     }
-    
+
 }
 
 function jumpscare(anim) {
