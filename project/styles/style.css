@@ -108,7 +108,6 @@ body {
     right: 10em;
     top: -2em;
     color: var(--color-font);
-    z-index: -1;
 }
 
 #buttonContainer {

@@ -1,11 +1,12 @@
-
-/* import Reveal from '../node_modules/reveal.js';
+/** 
+import Reveal from '../node_modules/reveal.js';
 import Markdown from '../node_modules/reveal.js/plugin/markdown/markdown.esm.js';
 
 let deck = new Reveal({
   plugins: [Markdown],
 });
-deck.initialize(); */
+deck.initialize(); 
+*/
 
 // configuration
 let alarmSound = new Audio('../ressources/audios/alarm.wav');
@@ -24,34 +25,28 @@ let GAME = {
 function introduction() {
     indexBody.innerHTML = `
     <div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
-    <script src="../reveal.js/dist/reveal.js"></script>
-    <script src="../reveal.js/plugin/notes/notes.js"></script>
-    <script src="../reveal.js/plugin/markdown/markdown.js"></script>
-    <script src="../reveal.js/plugin/highlight/highlight.js"></script>
-    <script src="../reveal.js/dist/reveal.js"></script>
-    <script>
-        // More info about initialization & config:
-        // - https://revealjs.com/initialization/
-        // - https://revealjs.com/config/
-        Reveal.initialize({
-            hash: true,
-
-            // Learn about plugins: https://revealjs.com/plugins/
-            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
-        });
-        let deck1 = new Reveal(document.querySelector('.deck1'), {
-            embedded: true,
-            keyboardCondition: 'focused', // only react to keys when focused
-        });
-        deck1.initialize();
-
-    </script>
+            <div class="slides">
+ 
+                <section>
+                    <h2>Barebones Presentation</h2>
+                    <p>This example contains the bare minimum includes and markup required to run a reveal.js presentation.</p>
+                </section>
+ 
+                <section>
+                    <h2>No Theme</h2>
+                    <p>There's no theme included, so it will fall back on browser defaults.</p>
+                </section>
+ 
+            </div>
+        </div>
     `;
+ 
+    if (!window.revealInitialized) {
+        Reveal.initialize();
+        window.revealInitialized = true;
+    } else {
+        Reveal.sync(); // Falls du Slides später hinzufügst
+    }
 }
 
 function loadLevel() {
