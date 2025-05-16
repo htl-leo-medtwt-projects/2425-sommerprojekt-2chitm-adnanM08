@@ -75,7 +75,6 @@ function startSequence() {
         skipBox.style.opacity = 1;
         document.addEventListener('keyup', function(event) {
           if (event.key == 'e') {
-            skipBox.style.opacity = 0;
            loadHomePage();
            clearTimeout(emptyPageTO);
            clearTimeout(loadHomePageTO);

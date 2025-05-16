@@ -23,7 +23,9 @@ let GAME = {
     'alarmActive': false
 }
 function introduction() {
+    menuMusic.pause();
     indexBody.innerHTML = ``
+    indexBody.style.backgroundImage = 'none'
     setTimeout(function () {
         indexBody.style.backgroundImage = 'url("../ressources/images/slidesBg.png")'
         indexBody.style.backgroundSize = 'cover'
@@ -46,25 +48,38 @@ function introduction() {
                     <h2>Safety First</h2>
                     <p>Due to financial issues and saving plans you are only equipped with the available systems in the facility including cameras and a sound system, but what could you possibly need that for?</p>
                     <p id="discl">Kidz Entertainment is not responsible for any damage and issues including, but not limited to, injury or death.</p>
-                    <p>Have a great shift!</p>
+                    <p>Have a great shift!<br>Press E to start</p>
                 </section>
             </div>
         </div>
     `;
 
         if (!window.revealInitialized) {
+            Reveal.configure({
+                keyboard: {
+                    69: loadLevel
+                }
+            })
             Reveal.initialize();
+            
             window.revealInitialized = true;
         } else {
             Reveal.sync(); // Falls du Slides später hinzufügst
         }
         document.getElementsByClassName('reveal')[0].style.animation = 'fadeIn 0.5s 0s ease-in-out'
+/** 
+        document.addEventListener('keydown', function(event) {
+          if (event.key == 'e') {
+            loadLevel();
+            return;
+          }
+        }, {once: true})
+        */
     }, 1000)
 
 }
 
 function loadLevel() {
-    menuMusic.pause();
     indexBody.innerHTML =
         `
     <div id="clickBox">
