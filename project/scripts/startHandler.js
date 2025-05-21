@@ -54,7 +54,7 @@ function startSequence() {
         `
         <img id="openingCsBanner" src="../ressources/images/openingCutscene.jpg" alt="opening">
         <div id="skipBox">
-        <h2>Press <div id="skipIcon">E</div> to skip</h2>
+        <h2>Press <div id="skipIcon">S</div> to skip</h2>
         </div>
         `
         let openingCsBanner = document.getElementById('openingCsBanner')
@@ -76,7 +76,8 @@ function startSequence() {
         skipBox.style.animation = 'fadeIn 0.5s 0s ease-in-out';
         skipBox.style.opacity = 1;
         document.addEventListener('keyup', function(event) {
-          if (event.key == 'e') {
+          if (event.key == 's') {
+            introDialogue.pause()
            loadHomePage();
            clearTimeout(emptyPageTO);
            clearTimeout(loadHomePageTO);

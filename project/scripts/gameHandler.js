@@ -67,19 +67,14 @@ function introduction() {
             Reveal.sync(); // Falls du Slides später hinzufügst
         }
         document.getElementsByClassName('reveal')[0].style.animation = 'fadeIn 0.5s 0s ease-in-out'
-/** 
-        document.addEventListener('keydown', function(event) {
-          if (event.key == 'e') {
-            loadLevel();
-            return;
-          }
-        }, {once: true})
-        */
     }, 1000)
 
 }
 
 function loadLevel() {
+    indexBody.style.backgroundImage = 'none'
+    GAME.running = true;
+    PLAYER.lifeStatus = 'alive';
     indexBody.innerHTML =
         `
     <div id="clickBox">
@@ -96,11 +91,24 @@ function loadLevel() {
     <img src="../ressources/levelRessources/elevator.gif" id="elevator" class="mapBg">
     <img src="../ressources/images/mousecontrol.png" class="controlIcon">
     <div>
+    <h1 id="clock">12:00</h1>
     <div id="redAlarm"></div>
     <div id="jumpscareBox"></div>
     `
     }, 3000)
 
+}
+
+function runGame() {
+    let timer = 0;
+    let gameLoop = setInterval(function() {
+        timer++;
+        document.getElementById('clock').innerHTML = "0" + timer + ":00";
+        if (timer == 6 && GAME.running) {
+            win();
+            clearInterval(gameLoop);
+        }
+    }, 2000)
 }
 
 //mechanics

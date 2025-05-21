@@ -199,6 +199,13 @@ body {
     z-index: 8;
 }
 
+#clock {
+    z-index: 8;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+}
+
 #redAlarm {
     position: absolute;
     top: 0;
