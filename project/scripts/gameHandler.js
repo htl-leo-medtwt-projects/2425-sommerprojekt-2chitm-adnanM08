@@ -95,16 +95,17 @@ function loadLevel() {
     <div id="redAlarm"></div>
     <div id="jumpscareBox"></div>
     `
+    runGame()
     }, 3000)
 
 }
-
+let timeClock = 0;
+let gameLoop;
 function runGame() {
-    let timer = 0;
-    let gameLoop = setInterval(function() {
-        timer++;
-        document.getElementById('clock').innerHTML = "0" + timer + ":00";
-        if (timer == 6 && GAME.running) {
+    gameLoop = setInterval(function() {
+        timeClock++;
+        document.getElementById('clock').innerHTML = "0" + timeClock + ":00";
+        if (timeClock == 6 && GAME.running) {
             win();
             clearInterval(gameLoop);
         }
