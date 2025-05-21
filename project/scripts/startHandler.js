@@ -1,6 +1,7 @@
 let indexBody = document.getElementById('startBody');
 
 let menuMusic = new Audio('../ressources/audios/menu_music.ogg')
+let introDialogue = new Audio('../ressources/audios/dialogue.ogg')
 
 
 
@@ -48,6 +49,7 @@ function startSequence() {
         introTextBox.style.opacity = 0;
     }, 7000)
     setTimeout(function() {
+        introDialogue.play()
         indexBody.innerHTML = 
         `
         <img id="openingCsBanner" src="../ressources/images/openingCutscene.jpg" alt="opening">
@@ -56,18 +58,18 @@ function startSequence() {
         </div>
         `
         let openingCsBanner = document.getElementById('openingCsBanner')
-        openingCsBanner.style.animation = 'fadeIn 3s 1s ease-in-out,moveDown 30s 4s ease-in-out '
+        openingCsBanner.style.animation = 'fadeIn 3s 1s ease-in-out,moveDown 37s 4s ease-in-out '
         setTimeout(function() {
           openingCsBanner.style.opacity = 1
-        }, 2999);
+        }, 3699);
 
         var emptyPageTO = setTimeout(function() {
                             indexBody.innerHTML = ''
-                          }, 33000)
+                          }, 37000)
 
         var loadHomePageTO = setTimeout(function() {
                               loadHomePage();
-                            }, 34000)
+                            }, 38000)
         
         let skipBox = document.getElementById('skipBox');
         skipBox.style.animation = 'none';
