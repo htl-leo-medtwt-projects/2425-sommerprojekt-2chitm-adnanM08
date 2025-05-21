@@ -21,6 +21,7 @@ function toggleLifeStatus() {
 function changeLevel(lvl) {
     if (!Number.isNaN(lvl) && lvl > 0 && lvl <= 5) {
         PLAYER.level = lvl;
+        localStorage.setItem('level', lvl)
         loadHomePage();
     } else {
         console.log('GAME | An error occured while executing "changeLevel()". Make sure that the parameter is a number between 1 and 5. Ex.: changeLevel(1).')

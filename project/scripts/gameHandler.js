@@ -107,9 +107,10 @@ function runGame() {
         document.getElementById('clock').innerHTML = "0" + timeClock + ":00";
         if (timeClock == 6 && GAME.running) {
             win();
+            timeClock = 0;
             clearInterval(gameLoop);
         }
-    }, 2000)
+    }, 30000)
 }
 
 //mechanics
