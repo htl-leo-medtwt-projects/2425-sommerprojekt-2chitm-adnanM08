@@ -10,6 +10,8 @@ deck.initialize();
 
 // configuration
 let alarmSound = new Audio('../ressources/audios/alarm.wav');
+let monitorSound = new Audio('../ressources/audios/monitorSound.ogg');
+let buzzing = new Audio('../ressources/audios/buzzing.mp3')
 
 let jumpscares = [
     '../ressources/characters/balloraJumpscare.gif',
@@ -72,6 +74,8 @@ function introduction() {
 }
 
 function loadLevel() {
+    buzzing.play()
+    buzzing.loop = true;
     indexBody.style.backgroundImage = 'none'
     GAME.running = true;
     PLAYER.lifeStatus = 'alive';
@@ -90,8 +94,9 @@ function loadLevel() {
     <div class="mouseTrigger" id="rightTrigger" onmouseover="moveRight()">.</div>
     <img src="../ressources/levelRessources/elevator.gif" id="elevator" class="mapBg">
     <img src="../ressources/images/mousecontrol.png" class="controlIcon">
-    <div>
+    <div id="cont">
     <h1 id="clock">12:00</h1>
+    <img id="cameraClick" src="../ressources/images/cameraHoverButton.png" alt="Hover for Camera" onclick="toggleMonitor()">
     <div id="redAlarm"></div>
     <div id="jumpscareBox"></div>
     `
@@ -137,7 +142,8 @@ function moveRight() {
 }
 
 function win() {
-    indexBody.innerHTML = ''
+    buzzing.pause();
+    indexBody.innerHTML = '';
     setTimeout(function () {
         indexBody.innerHTML =
             `
@@ -162,6 +168,7 @@ function win() {
 }
 
 function jumpscare(anim) {
+    buzzing.pause();
     let jumpscareBox = document.getElementById('jumpscareBox');
     jumpscareBox.innerHTML = `<img id="jsImg" src="${jumpscares[anim]}" alt="jumpscare">`;
     jumpscareBox.style.zIndex = 9;
@@ -170,6 +177,29 @@ function jumpscare(anim) {
         jumpscareBox.style.zIndex = -1;
         indexBody.innerHTML = '<div onclick="loadHomePage()" id="gameOverScreen"><img src="../ressources/levelRessources/distortion.gif" alt="Game Over"><h1 id="gameOverText">GAME OVER<br><span id="subText">Click anywhere to continue</span></h1></div>'
     }, 1000)
+}
+
+let monitorOpen = false
+function toggleMonitor() {
+    monitorSound.play();
+    if (monitorOpen) {
+        monitorOpen = false;
+        document.getElementById('monitorContainer').remove();
+    } else {
+        monitorOpen = true;
+        document.getElementById('cont').innerHTML += '<img id="monitorGif" src="../ressources/images/monitor.gif" alt="monitor">';
+        let gif = document.getElementById('monitorGif');
+        gif.style.zIndex = 9;
+        setTimeout(function() {
+            gif.remove();
+            document.getElementById('cont').innerHTML += 
+            `<div id="monitorContainer">
+                <div class="enemyCP" id="cp1">Station 1</div>
+                <div class="enemyCP" id="cp2">Station 2</div>
+                <div class="enemyCP" id="cp3">Station 3</div>
+            </div>`
+        }, 700)
+    }
 }
 
 async function toggleAlarm() {
