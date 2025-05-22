@@ -11,7 +11,8 @@ deck.initialize();
 // configuration
 let alarmSound = new Audio('../ressources/audios/alarm.wav');
 let monitorSound = new Audio('../ressources/audios/monitorSound.ogg');
-let buzzing = new Audio('../ressources/audios/buzzing.mp3')
+let buzzing = new Audio('../ressources/audios/buzzing.mp3');
+let distraction = new Audio('../ressources/audios/metal_crawling.ogg');
 
 let jumpscares = [
     '../ressources/characters/balloraJumpscare.gif',
@@ -63,7 +64,7 @@ function introduction() {
                 }
             })
             Reveal.initialize();
-            
+
             window.revealInitialized = true;
         } else {
             Reveal.sync(); // Falls du Slides später hinzufügst
@@ -100,22 +101,112 @@ function loadLevel() {
     <div id="redAlarm"></div>
     <div id="jumpscareBox"></div>
     `
-    runGame()
+        runGame()
     }, 3000)
 
 }
 let timeClock = 0;
 let gameLoop;
 function runGame() {
-    gameLoop = setInterval(function() {
+    gameLoop = setInterval(function () {
+        moveEnemy();
         timeClock++;
         document.getElementById('clock').innerHTML = "0" + timeClock + ":00";
+        let
         if (timeClock == 6 && GAME.running) {
             win();
             timeClock = 0;
             clearInterval(gameLoop);
         }
     }, 30000)
+}
+
+let balloraLocation = 'stage';
+let foxyLocation = 'stage';
+let FreddyLocation = 'stage';
+
+function moveEnemy() {
+    let enemy = Math.floor(Math.random() * 3) + 1;
+    let clvl = PLAYER.level;
+    let chance = Math.random();
+    if (clvl == 1) {
+        if (chance < 0.2) {
+            updateLocation(enemy);
+        }
+    } else if (clvl == 2 || clvl == 3) {
+        if (chance < 0.3) {
+            updateLocation(enemy);
+        }
+    } else {
+        if (chance < 0.6) {
+            updateLocation(enemy);
+        }
+    }
+}
+
+function updateLocation(enemy) {
+            if (enemy == 1) {
+                if (balloraLocation == 'mainCorridor') {
+                    balloraLocation = 'room';
+                    GAME.alarmActive = true;
+                    toggleAlarm();
+                    setTimeout(function() {
+                        if (balloraLocation == 'room') {
+                            jumpscare(0)
+                        }
+                    }, 5000)
+                } else if (balloraLocation == 'stage') {
+                    balloraLocation = 'corridor'
+                } else {
+                    balloraLocation = 'mainCorridor'
+                }
+            } else if (enemy == 2) {
+                if (foxyLocation == 'mainCorridor') {
+                    foxyLocation = 'room';
+                    GAME.alarmActive = true;
+                    toggleAlarm();
+                    setTimeout(function() {
+                        if (foxyLocation == 'room') {
+                            jumpscare(1)
+                        }
+                    }, 5000)
+                } else if (foxyLocation == 'stage') {
+                    foxyLocation = 'corridor'
+                } else {
+                    foxyLocation = 'mainCorridor'
+                }
+            } else {
+                if (FreddyLocation == 'mainCorridor') {
+                    FreddyLocation = 'room';
+                    GAME.alarmActive = true;
+                    toggleAlarm();
+                    setTimeout(function() {
+                        if (FreddyLocation == 'room') {
+                            jumpscare(2)
+                        }
+                    }, 5000)
+                } else if (FreddyLocation == 'stage') {
+                    FreddyLocation = 'corridor'
+                } else {
+                    FreddyLocation = 'mainCorridor'
+                }
+            }
+}
+
+function distract(station) {
+    if (distraction.paused) {
+        distraction.play();
+    if (station == 'stage1') {
+        if (balloraLocation == 'corridor') {
+            balloraLocation = 'stage';
+        }
+    } else if (station == 'stage2') {
+        if (foxyLocation == 'corridor') {
+            foxyLocation = 'stage';
+        }
+    }
+    }
+    
 }
 
 //mechanics
@@ -153,13 +244,16 @@ function win() {
     }, 1000)
     if (PLAYER.level < 5) {
         PLAYER.level++;
+        localStorage.setItem('level', PLAYER.level);
         setTimeout(function () {
             loadLevel();
         }, 10000)
 
     } else {
         PLAYER.level = 1
+        localStorage.setItem('level', PLAYER.level);
         PLAYER.stars++;
+        localStorage.setItem('stars', PLAYER.stars);
         setTimeout(function () {
             loadHomePage();
         }, 10000)
@@ -169,6 +263,8 @@ function win() {
 
 function jumpscare(anim) {
     buzzing.pause();
+    GAME.running = false;
+    PLAYER.lifeStatus = 'dead';
     let jumpscareBox = document.getElementById('jumpscareBox');
     jumpscareBox.innerHTML = `<img id="jsImg" src="${jumpscares[anim]}" alt="jumpscare">`;
     jumpscareBox.style.zIndex = 9;
@@ -190,13 +286,16 @@ function toggleMonitor() {
         document.getElementById('cont').innerHTML += '<img id="monitorGif" src="../ressources/images/monitor.gif" alt="monitor">';
         let gif = document.getElementById('monitorGif');
         gif.style.zIndex = 9;
-        setTimeout(function() {
+        setTimeout(function () {
             gif.remove();
-            document.getElementById('cont').innerHTML += 
-            `<div id="monitorContainer">
-                <div class="enemyCP" id="cp1">Station 1</div>
-                <div class="enemyCP" id="cp2">Station 2</div>
-                <div class="enemyCP" id="cp3">Station 3</div>
+            document.getElementById('cont').innerHTML +=
+                `<div id="monitorContainer">
+                <div id="monitorDesc">
+                    Click on an empty box to play a sound.<br>Blinking box indicates movement.
+                </div>
+                <div class="enemyCP" id="cp1"></div>
+                <div class="enemyCP" id="cp2"></div>
+                <div class="enemyCP" id="cp3"></div>
             </div>`
         }, 700)
     }
