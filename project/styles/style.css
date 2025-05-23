@@ -284,16 +284,26 @@ body {
 }
 
 .enemyCP {
+    position: absolute;
     z-index: 8;
-    color: black;
+    background-color: rgb(255, 255, 255);
+    border: 0.1em solid white;
 }
 
 #cp1 {
     width: 3em;
     height: 1em;
     position: absolute;
-    top: 57vh;
-    left: 60vw;
+    top: 58vh;
+    left: 40vw;
+}
+
+#cp2 {
+    width: 3em;
+    height: 1em;
+    position: absolute;
+    top: 6vh;
+    left: 75vw;
 }
 
 /* Animations */

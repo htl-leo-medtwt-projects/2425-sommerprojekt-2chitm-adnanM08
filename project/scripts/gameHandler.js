@@ -112,7 +112,6 @@ function runGame() {
         moveEnemy();
         timeClock++;
         document.getElementById('clock').innerHTML = "0" + timeClock + ":00";
-        let
         if (timeClock == 6 && GAME.running) {
             win();
             timeClock = 0;
@@ -204,6 +203,10 @@ function distract(station) {
         if (foxyLocation == 'corridor') {
             foxyLocation = 'stage';
         }
+    } else if (station == 'stage3') {
+        if (FreddyLocation == 'corridor') {
+            FreddyLocation = 'stage';
+        }
     }
     }
     
@@ -283,6 +286,7 @@ function toggleMonitor() {
         document.getElementById('monitorContainer').remove();
     } else {
         monitorOpen = true;
+        blinkingBoxes();
         document.getElementById('cont').innerHTML += '<img id="monitorGif" src="../ressources/images/monitor.gif" alt="monitor">';
         let gif = document.getElementById('monitorGif');
         gif.style.zIndex = 9;
@@ -298,6 +302,20 @@ function toggleMonitor() {
                 <div class="enemyCP" id="cp3"></div>
             </div>`
         }, 700)
+    }
+}
+
+async function blinkingBoxes() {
+    let boxes = document.getElementsByClassName('enemyCP')
+    while (monitorOpen) {
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].style.backgroundColor = 'rgba(255, 255, 255, 0)';
+        }
+        await timer(1000)
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].style.backgroundColor = 'rgb(255, 255, 255)';
+        }
+        await timer(1000)
     }
 }
 
