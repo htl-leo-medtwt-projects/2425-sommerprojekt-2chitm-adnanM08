@@ -302,9 +302,10 @@ function toggleMonitor() {
                 <div class="enemyCP activeCP" id="cp1" onClick="boxClicked(this)"></div>
                 <div class="enemyCP activeCP" id="cp2" onClick="boxClicked(this)"></div>
                 <div class="enemyCP activeCP" id="cp3" onClick="boxClicked(this)"></div>
-                <div class="enemyCP inactiveCP" id="cp1.5" onClick="boxClicked(this)"></div>
-                <div class="enemyCP inactiveCP" id="cp2.5" onClick="boxClicked(this)"></div>
-                <div class="enemyCP inactiveCP" id="cp3.5" onClick="boxClicked(this)"></div>
+                <div class="enemyCP inactiveCP" id="cp15" onClick="boxClicked(this)"></div>
+                <div class="enemyCP inactiveCP" id="cp25" onClick="boxClicked(this)"></div>
+                <div class="enemyCP inactiveCP" id="cp35" onClick="boxClicked(this)"></div>
+                <div class="enemyCP inactiveCP" id="cp4" onClick="boxClicked(this)"></div>
             </div>`
         }, 700)
     }
@@ -312,8 +313,39 @@ function toggleMonitor() {
 
 function boxClicked(targetElement) {
     let elemClassList = targetElement.classList;
-    elemClassList.toggle('activeCP');
-    elemClassList.toggle('inactiveCP')
+    if (targetElement.id != 'cp4' && elemClassList.contains('inactiveCP')) {
+        if (targetElement.id == 'cp1' && balloraLocation == 'corridor'  || targetElement.id == 'cp2' && foxyLocation == 'corridor' || targetElement.id == 'cp3' && FreddyLocation == 'corridor') {
+            if (getElementById(targetElement.id + '5').classList.contains('activeCP')) {
+                elemClassList.toggle('activeCP');
+                elemClassList.toggle('inactiveCP');
+                getElementById(targetElement.id + '5').classList.toggle('inactiveCP')
+                getElementById(targetElement.id + '5').classList.toggle('activeCP')
+                if (targetElement.id == 'cp1') {
+                    moveEnemy('stage1');
+                } else if (targetElement.id == 'cp2') {
+                    moveEnemy('stage2');
+                } else {
+                    moveEnemy('stage3');
+                }
+            }
+        } else if (targetElement.id == 'cp15' && balloraLocation == 'mainCorridor'  || targetElement.id == 'cp25' && foxyLocation == 'mainCorridor' || targetElement.id == 'cp35' && FreddyLocation == 'mainCorridor') {
+            if (getElementById('mainCorridor').classList.contains('activeCP')) {
+                elemClassList.toggle('activeCP');
+                elemClassList.toggle('inactiveCP');
+                getElementById(targetElement.id + '5').classList.toggle('inactiveCP')
+                getElementById(targetElement.id + '5').classList.toggle('activeCP')
+                if (targetElement.id == 'cp15') {
+                    moveEnemy('stage1');
+                } else if (targetElement.id == 'cp25') {
+                    moveEnemy('stage2');
+                } else {
+                    moveEnemy('stage3');
+                }
+            }
+        }
+        
+    }
+    
 }
 
 async function blinkingBoxes() {

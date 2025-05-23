@@ -297,8 +297,18 @@ body {
     left: 42vw;
 }
 
+#cp15 {
+    top: 57vh;
+    left: 50vw;
+}
+
 #cp2 {
     top: 10vh;
+    left: 64.4vw;
+}
+
+#cp25 {
+    top: 25vh;
     left: 64.4vw;
 }
 
@@ -307,8 +317,19 @@ body {
     left: 87vw;
 }
 
+#cp35 {
+    top: 57vh;
+    left: 76vw;
+}
+
+#cp4 {
+    top: 57vh;
+    left: 64.4vw;
+}
+
 .inactiveCP {
     background-image: url('../ressources/levelRessources/soundIcon.png');
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .activeCP {
