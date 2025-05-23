@@ -320,6 +320,7 @@ function boxClicked(targetElement) {
                 elemClassList.toggle('inactiveCP');
                 getElementById(targetElement.id + '5').classList.toggle('inactiveCP')
                 getElementById(targetElement.id + '5').classList.toggle('activeCP')
+                distraction.play()
                 if (targetElement.id == 'cp1') {
                     moveEnemy('stage1');
                 } else if (targetElement.id == 'cp2') {
@@ -334,6 +335,7 @@ function boxClicked(targetElement) {
                 elemClassList.toggle('inactiveCP');
                 getElementById(targetElement.id + '5').classList.toggle('inactiveCP')
                 getElementById(targetElement.id + '5').classList.toggle('activeCP')
+                distraction.play();
                 if (targetElement.id == 'cp15') {
                     moveEnemy('stage1');
                 } else if (targetElement.id == 'cp25') {
@@ -343,7 +345,6 @@ function boxClicked(targetElement) {
                 }
             }
         }
-        
     }
     
 }

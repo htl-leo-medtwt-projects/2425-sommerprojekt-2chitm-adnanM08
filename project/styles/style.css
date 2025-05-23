@@ -292,6 +292,10 @@ body {
     border: 0.1em solid white;
 }
 
+.inactiveCP {
+    cursor: pointer;
+}
+
 #cp1 {
     top: 57vh;
     left: 42vw;
@@ -325,6 +329,13 @@ body {
 #cp4 {
     top: 57vh;
     left: 64.4vw;
+}
+
+#monitorDesc {
+    font-size: xx-large;
+    position: absolute;
+    left: 1em;
+    top: 20vh;
 }
 
 .inactiveCP {
