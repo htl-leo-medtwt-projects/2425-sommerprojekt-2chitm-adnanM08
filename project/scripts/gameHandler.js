@@ -125,14 +125,18 @@ function loadLevel() {
 }
 let timeClock = 0;
 let gameLoop;
+let enemyLoop;
 function runGame() {
-    gameLoop = setInterval(function () {
+    enemyLoop = setInterval(function () {
         moveEnemy();
+    }, 10000)
+    gameLoop = setInterval(function () {
         timeClock++;
         document.getElementById('clock').innerHTML = "0" + timeClock + ":00";
         if (timeClock == 6 && GAME.running) {
             win();
             timeClock = 0;
+            clearInterval(enemyLoop)
             clearInterval(gameLoop);
         }
     }, 20000) // how long a round takes
@@ -279,6 +283,7 @@ function moveRight() {
 
 function win() {
     buzzing.pause();
+    alarmSound.pause();
     indexBody.innerHTML = '';
     setTimeout(function () {
         indexBody.innerHTML =
@@ -308,6 +313,7 @@ function win() {
 
 function jumpscare(anim) {
     buzzing.pause();
+    alarmSound.pause();
     jumpscareAudio.play();
     GAME.running = false;
     PLAYER.lifeStatus = 'dead';
