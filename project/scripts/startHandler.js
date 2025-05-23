@@ -102,7 +102,7 @@ function loadHomePage() {
   <img width="450px" src="../ressources/images/title.png" alt="underground">
   <div id="buttonContainer">
     <div class="homeButtons" id="newGameButton" onclick="introduction()">New Game</div>
-    <div class="homeButtons" id="continueButton">Continue</div>
+    <div class="homeButtons" id="continueButton" onclick="loadLevel()">Continue</div>
     <div onclick="toggleSettings()" class="homeButtons" id="settingsButton">Settings</div>
   </div>
   <div id="settingsContainer"></div>

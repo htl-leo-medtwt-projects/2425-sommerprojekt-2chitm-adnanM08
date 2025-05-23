@@ -26,6 +26,8 @@ let GAME = {
     'alarmActive': false
 }
 function introduction() {
+    PLAYER.level = 1;
+    localStorage.setItem('level', 1)
     menuMusic.pause();
     indexBody.innerHTML = ``
     indexBody.style.backgroundImage = 'none'
@@ -297,16 +299,25 @@ function toggleMonitor() {
                 <div id="monitorDesc">
                     Click on an empty box to play a sound.<br>Blinking box indicates movement.
                 </div>
-                <div class="enemyCP" id="cp1"></div>
-                <div class="enemyCP" id="cp2"></div>
-                <div class="enemyCP" id="cp3"></div>
+                <div class="enemyCP activeCP" id="cp1" onClick="boxClicked(this)"></div>
+                <div class="enemyCP activeCP" id="cp2" onClick="boxClicked(this)"></div>
+                <div class="enemyCP activeCP" id="cp3" onClick="boxClicked(this)"></div>
+                <div class="enemyCP inactiveCP" id="cp1.5" onClick="boxClicked(this)"></div>
+                <div class="enemyCP inactiveCP" id="cp2.5" onClick="boxClicked(this)"></div>
+                <div class="enemyCP inactiveCP" id="cp3.5" onClick="boxClicked(this)"></div>
             </div>`
         }, 700)
     }
 }
 
+function boxClicked(targetElement) {
+    let elemClassList = targetElement.classList;
+    elemClassList.toggle('activeCP');
+    elemClassList.toggle('inactiveCP')
+}
+
 async function blinkingBoxes() {
-    let boxes = document.getElementsByClassName('enemyCP')
+    let boxes = document.getElementsByClassName('activeCP')
     while (monitorOpen) {
         for (let i = 0; i < boxes.length; i++) {
             boxes[i].style.backgroundColor = 'rgba(255, 255, 255, 0)';
