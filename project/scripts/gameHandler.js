@@ -13,7 +13,7 @@ let alarmSound = new Audio('../ressources/audios/alarm.wav');
 let monitorSound = new Audio('../ressources/audios/monitorSound.ogg');
 let buzzing = new Audio('../ressources/audios/buzzing.mp3');
 let distraction = new Audio('../ressources/audios/metal_crawling.ogg');
-let jumpscareAudio = new Audio('../ressources/audios/jumpscare.mp3')
+let jumpscareAudio = new Audio('../ressources/audios/jumpscareSound.ogg')
 
 let jumpscares = [
     '../ressources/characters/balloraJumpscare.gif',
@@ -78,7 +78,8 @@ function introduction() {
 }
 
 function loadLevel() {
-    buzzing.play()
+    menuMusic.pause();
+    buzzing.play();
     buzzing.loop = true;
     indexBody.style.backgroundImage = 'none'
     GAME.running = true;
@@ -102,6 +103,20 @@ function loadLevel() {
     <h1 id="clock">12:00</h1>
     <img id="cameraClick" src="../ressources/images/cameraHoverButton.png" alt="Hover for Camera" onclick="toggleMonitor()">
     <div id="redAlarm"></div>
+    <div id="cont">
+    <div id="monitorContainer">
+                <div id="monitorDesc">
+                    Click on an empty box to play a sound.<br>Blinking box indicates movement.
+                </div>
+                <div class="enemyCP activeCP" id="cp1" onClick="boxClicked(this)"></div>
+                <div class="enemyCP activeCP" id="cp2" onClick="boxClicked(this)"></div>
+                <div class="enemyCP activeCP" id="cp3" onClick="boxClicked(this)"></div>
+                <div class="enemyCP inactiveCP" id="cp15" onClick="boxClicked(this)"></div>
+                <div class="enemyCP inactiveCP" id="cp25" onClick="boxClicked(this)"></div>
+                <div class="enemyCP inactiveCP" id="cp35" onClick="boxClicked(this)"></div>
+                <div class="enemyCP inactiveCP" id="cp4" onClick="boxClicked(this)"></div>
+            </div>
+    </div>
     <div id="jumpscareBox"></div>
     `
         runGame()
@@ -120,7 +135,7 @@ function runGame() {
             timeClock = 0;
             clearInterval(gameLoop);
         }
-    }, 30000)
+    }, 20000) // how long a round takes
 }
 
 let balloraLocation = 'stage';
@@ -132,15 +147,15 @@ function moveEnemy() {
     let clvl = PLAYER.level;
     let chance = Math.random();
     if (clvl == 1) {
-        if (chance < 0.2) {
+        if (chance < 0.4) {
             updateLocation(enemy);
         }
     } else if (clvl == 2 || clvl == 3) {
-        if (chance < 0.3) {
+        if (chance < 0.5) {
             updateLocation(enemy);
         }
     } else {
-        if (chance < 0.6) {
+        if (chance < 0.8) {
             updateLocation(enemy);
         }
     }
@@ -158,8 +173,16 @@ function updateLocation(enemy) {
                         }
                     }, 5000)
                 } else if (balloraLocation == 'stage') {
+                    document.getElementById('cp15').classList.add('activeCP')
+                    document.getElementById('cp15').classList.remove('inactiveCP')
+                    document.getElementById('cp1').classList.add('inactiveCP')
+                    document.getElementById('cp1').classList.remove('activeCP')
                     balloraLocation = 'corridor'
                 } else {
+                    document.getElementById('cp4').classList.add('activeCP')
+                    document.getElementById('cp4').classList.remove('inactiveCP')
+                    document.getElementById('cp15').classList.add('inactiveCP')
+                    document.getElementById('cp15').classList.remove('activeCP')
                     balloraLocation = 'mainCorridor'
                 }
             } else if (enemy == 2) {
@@ -173,8 +196,16 @@ function updateLocation(enemy) {
                         }
                     }, 5000)
                 } else if (foxyLocation == 'stage') {
+                    document.getElementById('cp25').classList.add('activeCP')
+                    document.getElementById('cp25').classList.remove('inactiveCP')
+                    document.getElementById('cp2').classList.add('inactiveCP')
+                    document.getElementById('cp2').classList.remove('activeCP')
                     foxyLocation = 'corridor'
                 } else {
+                    document.getElementById('cp4').classList.add('activeCP')
+                    document.getElementById('cp4').classList.remove('inactiveCP')
+                    document.getElementById('cp25').classList.add('inactiveCP')
+                    document.getElementById('cp25').classList.remove('activeCP')
                     foxyLocation = 'mainCorridor'
                 }
             } else {
@@ -188,8 +219,16 @@ function updateLocation(enemy) {
                         }
                     }, 5000)
                 } else if (FreddyLocation == 'stage') {
+                    document.getElementById('cp35').classList.add('activeCP')
+                    document.getElementById('cp35').classList.remove('inactiveCP')
+                    document.getElementById('cp3').classList.add('inactiveCP')
+                    document.getElementById('cp3').classList.remove('activeCP')
                     FreddyLocation = 'corridor'
                 } else {
+                    document.getElementById('cp4').classList.add('activeCP')
+                    document.getElementById('cp4').classList.remove('inactiveCP')
+                    document.getElementById('cp35').classList.add('inactiveCP')
+                    document.getElementById('cp35').classList.remove('activeCP')
                     FreddyLocation = 'mainCorridor'
                 }
             }
@@ -287,7 +326,7 @@ function toggleMonitor() {
     monitorSound.play();
     if (monitorOpen) {
         monitorOpen = false;
-        document.getElementById('monitorContainer').remove();
+        document.getElementById('monitorContainer').style.zIndex = '-1';
     } else {
         monitorOpen = true;
         blinkingBoxes();
@@ -296,24 +335,12 @@ function toggleMonitor() {
         gif.style.zIndex = 9;
         setTimeout(function () {
             gif.remove();
-            document.getElementById('cont').innerHTML +=
-                `<div id="monitorContainer">
-                <div id="monitorDesc">
-                    Click on an empty box to play a sound.<br>Blinking box indicates movement.
-                </div>
-                <div class="enemyCP activeCP" id="cp1" onClick="boxClicked(this)"></div>
-                <div class="enemyCP activeCP" id="cp2" onClick="boxClicked(this)"></div>
-                <div class="enemyCP activeCP" id="cp3" onClick="boxClicked(this)"></div>
-                <div class="enemyCP inactiveCP" id="cp15" onClick="boxClicked(this)"></div>
-                <div class="enemyCP inactiveCP" id="cp25" onClick="boxClicked(this)"></div>
-                <div class="enemyCP inactiveCP" id="cp35" onClick="boxClicked(this)"></div>
-                <div class="enemyCP inactiveCP" id="cp4" onClick="boxClicked(this)"></div>
-            </div>`
+            document.getElementById('monitorContainer').style.zIndex = '7';
         }, 700)
     }
 }
 
-function boxClicked(targetElement) {
+/* function boxClicked(targetElement) {
     let elemClassList = targetElement.classList;
     if (targetElement.id != 'cp4' && elemClassList.contains('inactiveCP')) {
         if (targetElement.id == 'cp1' && balloraLocation == 'corridor'  || targetElement.id == 'cp2' && foxyLocation == 'corridor' || targetElement.id == 'cp3' && FreddyLocation == 'corridor') {
@@ -349,7 +376,7 @@ function boxClicked(targetElement) {
         }
     }
     
-}
+} */
 
 async function blinkingBoxes() {
     let boxes = document.getElementsByClassName('activeCP')
