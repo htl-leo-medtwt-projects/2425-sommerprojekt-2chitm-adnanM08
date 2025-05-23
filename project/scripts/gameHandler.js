@@ -13,6 +13,7 @@ let alarmSound = new Audio('../ressources/audios/alarm.wav');
 let monitorSound = new Audio('../ressources/audios/monitorSound.ogg');
 let buzzing = new Audio('../ressources/audios/buzzing.mp3');
 let distraction = new Audio('../ressources/audios/metal_crawling.ogg');
+let jumpscareAudio = new Audio('../ressources/audios/jumpscare.mp3')
 
 let jumpscares = [
     '../ressources/characters/balloraJumpscare.gif',
@@ -268,6 +269,7 @@ function win() {
 
 function jumpscare(anim) {
     buzzing.pause();
+    jumpscareAudio.play();
     GAME.running = false;
     PLAYER.lifeStatus = 'dead';
     let jumpscareBox = document.getElementById('jumpscareBox');
