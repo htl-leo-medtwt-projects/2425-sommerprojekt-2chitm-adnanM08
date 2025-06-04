@@ -259,7 +259,7 @@ body {
 }
 
 #cameraClick {
-    z-index: 8;
+    z-index: 10;
     width: 40vw;
     position: absolute;
     bottom: 1em;
@@ -288,12 +288,8 @@ body {
     height: 2em;
     position: absolute;
     z-index: 8;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
     border: 0.1em solid white;
-}
-
-.inactiveCP {
-    cursor: pointer;
 }
 
 #cp1 {
@@ -341,10 +337,12 @@ body {
 .inactiveCP {
     background-image: url('../ressources/levelRessources/soundIcon.png');
     background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
 }
 
 .activeCP {
     background-image: none;
+    background-color: rgb(255, 255, 255);
 }
 
 /* Animations */

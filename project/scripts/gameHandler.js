@@ -108,12 +108,12 @@ function loadLevel() {
                 <div id="monitorDesc">
                     Click on an empty box to play a sound.<br>Blinking box indicates movement.
                 </div>
-                <div class="enemyCP activeCP" id="cp1" onClick="distract(stage1)"></div>
-                <div class="enemyCP activeCP" id="cp2" onClick="boxClicked(stage2)"></div>
-                <div class="enemyCP activeCP" id="cp3" onClick="boxClicked(stage3)"></div>
-                <div class="enemyCP inactiveCP" id="cp15" onClick="boxClicked(corridor1)"></div>
-                <div class="enemyCP inactiveCP" id="cp25" onClick="boxClicked(corridor2)"></div>
-                <div class="enemyCP inactiveCP" id="cp35" onClick="boxClicked(corridor3)"></div>
+                <div class="enemyCP activeCP" id="cp1" onClick="distract('stage1')"></div>
+                <div class="enemyCP activeCP" id="cp2" onClick="distract('stage2')"></div>
+                <div class="enemyCP activeCP" id="cp3" onClick="distract('stage3')"></div>
+                <div class="enemyCP inactiveCP" id="cp15" onClick="distract('corridor1')"></div>
+                <div class="enemyCP inactiveCP" id="cp25" onClick="distract('corridor2')"></div>
+                <div class="enemyCP inactiveCP" id="cp35" onClick="distract('corridor3')"></div>
                 <div class="enemyCP inactiveCP" id="cp4"></div>
             </div>
     </div>
@@ -142,9 +142,9 @@ function runGame() {
     }, 20000) // how long a round takes
 }
 
-let balloraLocation = 'stage';
-let foxyLocation = 'stage';
-let FreddyLocation = 'stage';
+let balloraLocation = 'stage1';
+let foxyLocation = 'stage2';
+let FreddyLocation = 'stage3';
 
 function moveEnemy() {
     let enemy = Math.floor(Math.random() * 3) + 1;
@@ -176,7 +176,7 @@ function updateLocation(enemy) {
                             jumpscare(0)
                         }
                     }, 5000)
-                } else if (balloraLocation == 'stage') {
+                } else if (balloraLocation == 'stage1') {
                     document.getElementById('cp15').classList.add('activeCP')
                     document.getElementById('cp15').classList.remove('inactiveCP')
                     document.getElementById('cp1').classList.add('inactiveCP')
@@ -199,7 +199,7 @@ function updateLocation(enemy) {
                             jumpscare(1)
                         }
                     }, 5000)
-                } else if (foxyLocation == 'stage') {
+                } else if (foxyLocation == 'stage2') {
                     document.getElementById('cp25').classList.add('activeCP')
                     document.getElementById('cp25').classList.remove('inactiveCP')
                     document.getElementById('cp2').classList.add('inactiveCP')
@@ -222,7 +222,7 @@ function updateLocation(enemy) {
                             jumpscare(2)
                         }
                     }, 5000)
-                } else if (FreddyLocation == 'stage') {
+                } else if (FreddyLocation == 'stage3') {
                     document.getElementById('cp35').classList.add('activeCP')
                     document.getElementById('cp35').classList.remove('inactiveCP')
                     document.getElementById('cp3').classList.add('inactiveCP')
@@ -242,7 +242,7 @@ function distract(station) {
     if (distraction.paused) {
         distraction.play();
     if (station == 'stage1') {
-        if (balloraLocation == 'corridor') {
+        if (balloraLocation == 'corridor1') {
             balloraLocation = 'stage1';
             document.getElementById('cp1').classList.add('activeCP')
             document.getElementById('cp1').classList.remove('inactiveCP')
@@ -250,7 +250,7 @@ function distract(station) {
             document.getElementById('cp15').classList.remove('activeCP')
         }
     } else if (station == 'stage2') {
-        if (foxyLocation == 'corridor') {
+        if (foxyLocation == 'corridor2') {
             foxyLocation = 'stage2';
             document.getElementById('cp2').classList.add('activeCP')
             document.getElementById('cp2').classList.remove('inactiveCP')
@@ -258,7 +258,7 @@ function distract(station) {
             document.getElementById('cp25').classList.remove('activeCP')
         }
     } else if (station == 'stage3') {
-        if (FreddyLocation == 'corridor') {
+        if (FreddyLocation == 'corridor3') {
             FreddyLocation = 'stage3';
             document.getElementById('cp3').classList.add('activeCP')
             document.getElementById('cp3').classList.remove('inactiveCP')
@@ -377,7 +377,7 @@ function toggleMonitor() {
         gif.style.zIndex = 9;
         setTimeout(function () {
             gif.remove();
-            document.getElementById('monitorContainer').style.zIndex = '7';
+            document.getElementById('monitorContainer').style.zIndex = '9';
         }, 700)
     }
 }
