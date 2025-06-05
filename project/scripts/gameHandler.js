@@ -107,6 +107,7 @@ function loadLevel() {
     <div id="monitorContainer">
                 <div id="monitorDesc">
                     Click on an empty box to play a sound.<br>Blinking box indicates movement.
+                    <p id="cooldownText">COOLDOWN</p>
                 </div>
                 <div class="enemyCP activeCP" id="cp1" onClick="distract('stage1')"></div>
                 <div class="enemyCP activeCP" id="cp2" onClick="distract('stage2')"></div>
@@ -241,6 +242,7 @@ function updateLocation(enemy) {
 function distract(station) {
     if (distraction.paused) {
         distraction.play();
+        document.getElementById('cooldownText').style.opacity = '1';
     if (station == 'stage1') {
         if (balloraLocation == 'corridor1') {
             balloraLocation = 'stage1';
@@ -290,8 +292,13 @@ function distract(station) {
             document.getElementById('cp4').classList.remove('activeCP')
         }
     }
+    distraction.onended = function() {onDistractionEnd()};
     }
     
+}
+
+function onDistractionEnd() {
+    document.getElementById('cooldownText').style.opacity = '0'
 }
 
 //mechanics
@@ -381,44 +388,6 @@ function toggleMonitor() {
         }, 700)
     }
 }
-
-/* function boxClicked(targetElement) {
-    let elemClassList = targetElement.classList;
-    if (targetElement.id != 'cp4' && elemClassList.contains('inactiveCP')) {
-        if (targetElement.id == 'cp1' && balloraLocation == 'corridor'  || targetElement.id == 'cp2' && foxyLocation == 'corridor' || targetElement.id == 'cp3' && FreddyLocation == 'corridor') {
-            if (getElementById(targetElement.id + '5').classList.contains('activeCP')) {
-                elemClassList.toggle('activeCP');
-                elemClassList.toggle('inactiveCP');
-                getElementById(targetElement.id + '5').classList.toggle('inactiveCP')
-                getElementById(targetElement.id + '5').classList.toggle('activeCP')
-                distraction.play()
-                if (targetElement.id == 'cp1') {
-                    moveEnemy('stage1');
-                } else if (targetElement.id == 'cp2') {
-                    moveEnemy('stage2');
-                } else {
-                    moveEnemy('stage3');
-                }
-            }
-        } else if (targetElement.id == 'cp15' && balloraLocation == 'mainCorridor'  || targetElement.id == 'cp25' && foxyLocation == 'mainCorridor' || targetElement.id == 'cp35' && FreddyLocation == 'mainCorridor') {
-            if (getElementById('mainCorridor').classList.contains('activeCP')) {
-                elemClassList.toggle('activeCP');
-                elemClassList.toggle('inactiveCP');
-                getElementById(targetElement.id + '5').classList.toggle('inactiveCP')
-                getElementById(targetElement.id + '5').classList.toggle('activeCP')
-                distraction.play();
-                if (targetElement.id == 'cp15') {
-                    moveEnemy('stage1');
-                } else if (targetElement.id == 'cp25') {
-                    moveEnemy('stage2');
-                } else {
-                    moveEnemy('stage3');
-                }
-            }
-        }
-    }
-    
-} */
 
 async function blinkingBoxes() {
     let boxes = document.getElementsByClassName('activeCP')
